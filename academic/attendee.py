@@ -16,6 +16,8 @@ class Attendee(models.Model):
         ('partner_session_unik','UNIQUE(session_id,partner_id)','Multiple same attendees detected!')
     ]
     
+    course_id = fields.Many2one(comodel_name="academic.course", string="Course", related="session_id.course_id", store=True)
+    
     @api.constrains('session_id', 'partner_id')
     def _check_unique_partner_session(self):
         for rec in self:

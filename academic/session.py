@@ -21,6 +21,21 @@ class Session(models.Model):
     
     taken_seats = fields.Float(string="Taken Seats", compute="_calc_taken_seats")
     
+    image_small = fields.Binary("Image Small")
+    
+    state = fields.Selection(
+        string="State", selection=[('draft','Draft'),('open','Open'),('done','Done')], required=True, readonly=True, default='draft'
+    )
+    
+    def action_draft(self):
+        self.state = 'draft'
+    
+    def action_open(self):
+        self.state = 'open'
+        
+    def action_done(self):
+        self.state = 'done'
+    
     def _calc_taken_seats(self):
         for rec in self:
             if rec.seats > 0:

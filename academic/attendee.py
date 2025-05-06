@@ -4,17 +4,19 @@ from odoo.exceptions import ValidationError
 class Attendee(models.Model):
     _name = "academic.attendee"
     
-    name = fields.Char(string="ID") #string label diganti ID karena pada video #40 dan #41 ada event onchange partner to angka ID
+    name = fields.Char(string="ID")
     session_id = fields.Many2one(comodel_name="academic.session", string="Session")
     partner_id = fields.Many2one(comodel_name="res.partner", string="Partner")
     
-    @api.onchange('partner_id')
-    def onchange_partner(self):
-        self.name = self.partner_id.id
+    # @api.onchange('partner_id')
+    # def onchange_partner(self):
+    #     self.name = self.partner_id.id
     
     _sql_constraints = [
         ('partner_session_unik','UNIQUE(session_id,partner_id)','Multiple same attendees detected!')
     ]
+    
+    course_id = fields.Many2one(comodel_name="academic.course", string="Course", related="session_id.course_id", store=True)
     
     @api.constrains('session_id', 'partner_id')
     def _check_unique_partner_session(self):
@@ -24,5 +26,6 @@ class Attendee(models.Model):
                 ('partner_id', '=', rec.partner_id.id),
                 ('id', '!=', rec.id),
             ], limit=1)
-            if existing:
-                raise ValidationError('Duplicate attendee for this session is not allowed!')
+            # if existing:
+            #     raise ValidationError('Duplicate attendee for this session is not allowed!')
+            #dikomen untuk keperluan quiz review 3 (attendees for multiple sessions)

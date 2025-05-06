@@ -24,6 +24,7 @@
 
     # always loaded
     'data': [
+        'security/groups.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
@@ -32,6 +33,7 @@
         'session.xml',
         'attendee.xml',
         'partner.xml',
+        'wizard/create_attendee.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

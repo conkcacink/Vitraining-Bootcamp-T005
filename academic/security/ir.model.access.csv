@@ -2,3 +2,15 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_admin_academic_course,access_admin_academic_course,model_academic_course,base.group_system,1,1,1,1
 access_admin_academic_session,access_admin_academic_session,model_academic_session,base.group_system,1,1,1,1
 access_admin_academic_attendee,access_admin_academic_attendee,model_academic_attendee,base.group_system,1,1,1,1
+
+access_academic_course_manager,academic.course.manager,model_academic_course,academic.group_academic_manager,1,1,1,1
+access_academic_session_manager,academic.session.manager,model_academic_session,academic.group_academic_manager,1,1,1,1
+access_academic_attendee_manager,academic.attendee.manager,model_academic_attendee,academic.group_academic_manager,1,1,1,1
+
+access_academic_course_user,academic.course.user,model_academic_course,academic.group_academic_user,1,1,1,0
+access_academic_session_user,academic.session.user,model_academic_session,academic.group_academic_user,1,1,1,0
+access_academic_attendee_user,academic.attendee.user,model_academic_attendee,academic.group_academic_user,1,1,1,0
+
+access_admin_academic_wizard,access_admin_academic_wizard,model_academic_create_attendee_wizard,base.group_system,1,1,1,1
+access_academic_wizard_manager,academic.wizard.manager,model_academic_create_attendee_wizard,academic.group_academic_manager,1,1,1,1
+access_academic_wizard_user,academic.wizard.user,model_academic_create_attendee_wizard,academic.group_academic_user,1,1,1,0

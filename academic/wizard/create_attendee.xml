@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="create_attendee_form">
+            <field name="name">create_attendee_form</field>
+            <field name="model">academic.create.attendee.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <!-- <field name="session_id" /> -->
+                        <field name="session_ids" />
+                        <field name="partner_ids" />
+                    </group>
+                    <footer>
+                        <button type="special" string="Cancel" special="cancel" icon="fa-times" title="cancel_button"/>
+                        <button type="object" string="Confirm" name="action_add_attendee" icon="fa-check-circle" 
+                        confirm="Are you sure to add attendees to this session?" title="confirm_button"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="create_attendee_wizard_action" model="ir.actions.act_window">
+            <field name="name">Add Attendee</field>
+            <field name="res_model">academic.create.attendee.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem name="Add Attendees" parent="academic_1" id="create_attendee_wizard_menu" sequence="40" action="create_attendee_wizard_action"/>
+        <!-- action server -->
+        <record model="ir.actions.server" id="open_wizard_action_server">
+            <field name="name">Add Attendees</field>
+            <field name="model_id" ref="academic.model_academic_session" />
+            <field name="binding_model_id" ref="academic.model_academic_session" />
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+            if records:
+                action = records.open_wizard()
+            </field>
+        </record>
+    </data>
+</odoo>

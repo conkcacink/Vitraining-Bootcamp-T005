@@ -1,0 +1,36 @@
+<odoo>
+    <data noupdate="0">
+        <record id="group_academic_group1" model="res.groups">
+            <field name="name">Academic / Group1</field>
+        </record>
+        <record id="group_academic_group2" model="res.groups">
+            <field name="name">Academic / Group2</field>
+        </record>
+        <!-- Application category for grouping (optional) -->
+        <record id="module_category_academic" model="ir.module.category">
+            <field name="name">Academic</field>
+            <field name="sequence">10</field>
+        </record>
+        <!-- Academic / User group -->
+        <record id="group_academic_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="academic.module_category_academic"/>
+        </record>
+        <!-- Academic / Manager group -->
+        <record id="group_academic_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="academic.module_category_academic"/>
+        </record>
+
+        <record id="only_responsible_can_modify" model="ir.rule">
+            <field name="name">Only responsible user can edit and delete course record</field>
+            <field name="model_id" ref="model_academic_course" />
+            <field name="groups" eval="[(4,ref('group_academic_manager'))]" />
+            <field name="perm_read" eval="0"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">[('responsible_id','=',user.id)]</field>
+        </record>
+    </data>
+</odoo>

@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','board'],
 
     # always loaded
     'data': [
@@ -34,6 +34,8 @@
         'attendee.xml',
         'partner.xml',
         'wizard/create_attendee.xml',
+        'reports/session.xml',
+        'dashboard.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

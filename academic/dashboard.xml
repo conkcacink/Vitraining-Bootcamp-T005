@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <record id="act_session_graph" model="ir.actions.act_window">
+            <field name="name">act_session_graph</field>
+            <field name="res_model">academic.session</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_academic_session_graph" />
+        </record>
+
+        <record id="act_session_calendar" model="ir.actions.act_window">
+            <field name="name">act_session_calendar</field>
+            <field name="res_model">academic.session</field>
+            <field name="view_mode">calendar</field>
+            <field name="view_id" ref="view_academic_session_calendar" />
+        </record>
+
+        <record id="act_course_list" model="ir.actions.act_window">
+            <field name="name">act_course_list</field>
+            <field name="res_model">academic.course</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="board_session_form" model="ir.ui.view">
+            <field name="name">Session Dashboard Form</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <board style="2-1">
+                        <column>
+                            <action 
+                                string="Attendee by Course" 
+                                height="150"
+                                width="500"
+                                colspan="4"
+                                name="%(act_session_graph)d"
+                            />
+                            <action 
+                                string="Sessions Calendar"
+                                name="%(act_session_calendar)d"
+                                colspan="4"
+                            />
+                        </column>
+                        <column>
+                            <action 
+                                string="Course"
+                                name="%(act_course_list)d"
+                                colspan="4"
+                            />
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_board_session" model="ir.actions.act_window">
+            <field name="name">Session Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="board_session_form" />
+        </record>
+
+        <menuitem id="menu_dashboard" name="Dashboard" sequence="0" parent="academic_1" />
+        <menuitem id="menu_dashboard_session" name="Session Dashboard" parent="menu_dashboard" sequence="1" action="open_board_session"/>
+    </data>
+</odoo>

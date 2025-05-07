@@ -7,3 +7,4 @@ from . import session
 from . import attendee
 from . import partner
 from . import wizard
+from . import view_patch
